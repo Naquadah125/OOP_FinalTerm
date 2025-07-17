@@ -28,15 +28,15 @@ public:
 
     }
     double TinhPhiBaoTri() override {
-
+        return 0.0;
     }
-    friend ostream& operator<< (ostream& os, XeOto& xeOto){
-        // output cho 5 biến
-        return os;
-    }
-    friend istream& operator>> (istream& is, XeOto& xeOto) {
-        // Input cho 5 biến
-        return is;
-    }
+    // friend ostream& operator<< (ostream& os, XeOto& xeOto){
+    //     // output cho 5 biến
+    //     return os;
+    // }
+    // friend istream& operator>> (istream& is, XeOto& xeOto) {
+    //     // Input cho 5 biến
+    //     return is;
+    // }
 
 };

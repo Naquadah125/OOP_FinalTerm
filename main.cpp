@@ -6,6 +6,6 @@
 using namespace std;
 
 int main() {
-
+    cout << "ccjday" << endl;
     return 0;
 }
