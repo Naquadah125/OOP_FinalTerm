@@ -1,4 +1,5 @@
 #include <iostream>
+#include <limits>
 #include "PhuongTien.cpp"
 using namespace std;
 
@@ -56,10 +57,30 @@ public:
         xeMay.setBienSo(bienSo);
         cout << "Nhap hang san xuat: "; is >> hangSanXuat;
         xeMay.setHangSanXuat(hangSanXuat);
-        cout << "Nhap nam san xuat: "; is >> namSanXuat;
-        xeMay.setNamSanXuat(namSanXuat);
-        cout << "Nhap dung tich: "; is >> dungTich;
-        xeMay.setDungTich(dungTich);
+        cout << "Nhap nam san xuat: ";
+        while (true) { //ng dùng nhập sai, sẽ nhập lại
+            is >> namSanXuat;
+            if (is.fail() || namSanXuat < 0) {
+                cout << "Loi, xin vui long nhap lai nam san xuat: ";
+                is.clear();
+                is.ignore(numeric_limits<streamsize>::max(), '\n');
+            } else {
+                xeMay.setNamSanXuat(namSanXuat);
+                break;
+            }
+        }
+        cout << "Nhap dung tich: ";
+        while (true) {  //ng dùng nhập sai, sẽ nhập lại
+            is >> dungTich;
+            if (is.fail() || dungTich < 0) {
+                cout << "Loi, xin vui long nhap lai dung tich: ";
+                is.clear();
+                is.ignore(numeric_limits<streamsize>::max(), '\n');
+            } else {
+                xeMay.setDungTich(dungTich);
+                break;
+            }
+        }
 
         return is;
     }

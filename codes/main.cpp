@@ -9,7 +9,6 @@ using namespace std;
 void testPhiBaoTri() {
     cout << fixed << setprecision(0);
 
-    // Test XeOto
     cout << "=== Test PhiBaoTri XeOto ===" << endl;
     XeOto oto1("51H-12345", "Toyota", 2020, 7, "Sedan"); // < 10 chỗ
     cout << "So cho ngoi: 7, Phi bao tri: " << oto1.TinhPhiBaoTri() << " vnd/nam" << endl;
@@ -22,7 +21,6 @@ void testPhiBaoTri() {
     XeOto oto5; // Mặc định: -1 chỗ
     cout << "So cho ngoi: -1, Phi bao tri: " << oto5.TinhPhiBaoTri() << " vnd/nam" << endl;
 
-    // Test XeMay
     cout << "\n=== Test PhiBaoTri XeMay ===" << endl;
     XeMay may1("59P1-12345", "Honda", 2019, 50); // < 70cc
     cout << "Dung tich: 50cc, Phi bao tri: " << may1.TinhPhiBaoTri() << " vnd/nam" << endl;
@@ -35,7 +33,6 @@ void testPhiBaoTri() {
     XeMay may5; // Mặc định: -1cc
     cout << "Dung tich: -1cc, Phi bao tri: " << may5.TinhPhiBaoTri() << " vnd/nam" << endl;
 
-    // Test XeTai
     cout << "\n=== Test PhiBaoTri XeTai ===" << endl;
     XeTai tai1("51C-12345", "Hyundai", 2020, 3.5); // < 4 tấn
     cout << "Tai trong: 3.5 tan, Phi bao tri: " << tai1.TinhPhiBaoTri() << " vnd/nam" << endl;
@@ -51,7 +48,6 @@ void testPhiBaoTri() {
     cout << "Tai trong: -1 tan, Phi bao tri: " << tai6.TinhPhiBaoTri() << " vnd/nam" << endl;
 }
 void testPhuongTien(){
-        // Test XeOto
     cout << "=== Test PhiBaoTri XeOto ===" << endl;
     XeOto oto1("51H-12345", "Toyota", 2020, 7, "Sedan"); // < 10 chỗ
     cout << oto1 << endl;
@@ -64,7 +60,6 @@ void testPhuongTien(){
     XeOto oto5; // Mặc định: -1 chỗ
     cout << oto5 << endl;
 
-    // Test XeMay
     cout << "\n=== Test PhiBaoTri XeMay ===" << endl;
     XeMay may1("59P1-12345", "Honda", 2019, 50); // < 70cc
     cout << may1 << endl;
@@ -77,7 +72,6 @@ void testPhuongTien(){
     XeMay may5; // Mặc định: -1cc
     cout << may5 << endl;
 
-    // Test XeTai
     cout << "\n=== Test PhiBaoTri XeTai ===" << endl;
     XeTai tai1("51C-12345", "Hyundai", 2020, 3.5); // < 4 tấn
     cout << tai1 << endl;
@@ -92,8 +86,49 @@ void testPhuongTien(){
     XeTai tai6; // Mặc định: -1 tấn
     cout << tai6 << endl;
 }
+void testInput(){
+    cout << "=== Test Nhap Du Lieu XeOto ===" << endl;
+    cout << "Nhap thong tin cho 2 xe oto:\n" << endl;
+    XeOto oto1;
+    cout << "Xe oto 1:" << endl;
+    cin >> oto1;
+    cout << "\nThong tin xe oto 1 vua nhap:" << endl;
+    cout << oto1 << endl;
+    XeOto oto2;
+    cout << "Xe oto 2:" << endl;
+    cin >> oto2;
+    cout << "\nThong tin xe oto 2 vua nhap:" << endl;
+    cout << oto2 << endl;
+
+    cout << "\n=== Test Nhap Du Lieu XeMay ===" << endl;
+    cout << "Nhap thong tin cho 2 xe may:\n" << endl;
+    XeMay may1;
+    cout << "Xe may 1:" << endl;
+    cin >> may1;
+    cout << "\nThong tin xe may 1 vua nhap:" << endl;
+    cout << may1 << endl;
+    XeMay may2;
+    cout << "Xe may 2:" << endl;
+    cin >> may2;
+    cout << "\nThong tin xe may 2 vua nhap:" << endl;
+    cout << may2 << endl;
+
+
+    cout << "\n=== Test Nhap Du Lieu XeTai ===" << endl;
+    cout << "Nhap thong tin cho 2 xe tai:\n" << endl;
+    XeTai tai1;
+    cout << "Xe tai 1:" << endl;
+    cin >> tai1;
+    cout << "\nThong tin xe tai 1 vua nhap:" << endl;
+    cout << tai1 << endl;
+    XeTai tai2;
+    cout << "Xe tai 2:" << endl;
+    cin >> tai2;
+    cout << "\nThong tin xe tai 2 vua nhap:" << endl;
+    cout << tai2 << endl;
+}
 
 int main() {
-    testPhuongTien();
+    testInput();
     return 0;
 }
