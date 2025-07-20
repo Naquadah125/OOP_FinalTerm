@@ -7,14 +7,14 @@ private:
     int soChoNgoi;
     string kieuDang;
 public:
-    XeOto() {}
+    XeOto() : soChoNgoi(-1), kieuDang("") {}
     XeOto(string bienSo, string hangSanXuat, int namSanXuat, int choNgoi, string kieuDang)
         : PhuongTien(bienSo, hangSanXuat, namSanXuat), soChoNgoi(choNgoi), kieuDang(kieuDang) {}
 
-    int getSoChoNgoi() {
+    int getSoChoNgoi() const {
         return soChoNgoi;
     }
-    string getKieuDang() {
+    string getKieuDang() const {
         return kieuDang;
     }
     void setSoChoNgoi(int choNgoi) {
@@ -25,18 +25,54 @@ public:
     }
 
     void HienThiThongTin() override {
+        PhuongTien::HienThiThongTin();
+        cout << "So Cho Ngoi: " << soChoNgoi << endl;
+        cout << "Kieu dang: " << kieuDang << endl;
+        cout << "Phi bao tri: " << formatNumber(TinhPhiBaoTri()) << " vnd/nam" << endl;
+    }
+    double TinhPhiBaoTri() override{
+        // https://dailyxetaihyundai.vn/tin-tuc-su-kien/muc-phi-bao-tri-duong-bo-cho-xe-o-to-xe-ban-tai-xe-tai-moi-nhat-2018.html
+        // lấy value 1 năm:
+        if (soChoNgoi < 0){
+            return 0;
+        }
+        if (soChoNgoi < 10){
+            return 2160000;
+        }
+        if (soChoNgoi >= 10 && soChoNgoi < 25){
+            return 3240000;
+        }
+        if (soChoNgoi >= 25 && soChoNgoi < 40){
+            return 4680000;
+        }
+        if (soChoNgoi >= 40){
+            return 7080000;
+        }
+        return -1;
+    }
+    friend ostream& operator<<(ostream& os, XeOto& xeOto){
+        xeOto.PhuongTien::HienThiThongTin();
+        os << "So Cho Ngoi: " << xeOto.soChoNgoi << " nguoi" << endl;
+        os << "Kieu dang: " << xeOto.kieuDang << endl;
+        os << "Phi bao tri: " << xeOto.formatNumber(xeOto.TinhPhiBaoTri()) << " vnd/nam" << endl;
+        return os;
+    }
+    friend istream& operator>>(istream& is, XeOto& xeOto){
+        string bienSo, hangSanXuat, kieuDang; 
+        int namSanXuat, soChoNgoi;
 
+        cout << "Nhap bien so xe: "; is >> bienSo;
+        xeOto.setBienSo(bienSo);
+        cout << "Nhap hang san xuat: "; is >> hangSanXuat;
+        xeOto.setHangSanXuat(hangSanXuat);
+        cout << "Nhap nam san xuat: "; is >> namSanXuat;
+        xeOto.setNamSanXuat(namSanXuat);
+        cout << "Nhap so cho ngoi: "; is >> soChoNgoi;
+        xeOto.setSoChoNgoi(soChoNgoi);
+        cout << "Nhap kieu dang: "; is.ignore(); getline(is, kieuDang); 
+        xeOto.setKieuDang(kieuDang);
+
+        return is;
     }
-    double TinhPhiBaoTri() override {
-        return 0.0;
-    }
-    // friend ostream& operator<< (ostream& os, XeOto& xeOto){
-    //     // output cho 5 biến
-    //     return os;
-    // }
-    // friend istream& operator>> (istream& is, XeOto& xeOto) {
-    //     // Input cho 5 biến
-    //     return is;
-    // }
 
 };
