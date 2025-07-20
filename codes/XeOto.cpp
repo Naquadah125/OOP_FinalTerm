@@ -7,7 +7,7 @@ private:
     int soChoNgoi;
     string kieuDang;
 public:
-    XeOto() : soChoNgoi(-1), kieuDang("") {}
+    XeOto() : soChoNgoi(-1), kieuDang("Invalid") {}
     XeOto(string bienSo, string hangSanXuat, int namSanXuat, int choNgoi, string kieuDang)
         : PhuongTien(bienSo, hangSanXuat, namSanXuat), soChoNgoi(choNgoi), kieuDang(kieuDang) {}
 
@@ -26,7 +26,7 @@ public:
 
     void HienThiThongTin() override {
         PhuongTien::HienThiThongTin();
-        cout << "So Cho Ngoi: " << soChoNgoi << endl;
+        cout << "So Cho Ngoi: " << soChoNgoi << " nguoi" << endl;
         cout << "Kieu dang: " << kieuDang << endl;
         cout << "Phi bao tri: " << formatNumber(TinhPhiBaoTri()) << " vnd/nam" << endl;
     }
