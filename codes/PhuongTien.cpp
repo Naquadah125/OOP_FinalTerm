@@ -12,7 +12,7 @@ protected:
     string formatNumber(int num){
         string s = to_string(num);
         for (int i = s.length() - 3; i > 0; i -= 3) { // Duyệt từ phải qua trái, mỗi 3 ký tự
-            s.insert(i, ".");                // Chèn dấu chấm tại vị trí i
+            s.insert(i, ".");                         // Chèn dấu chấm tại vị trí i
         }
         return s;
     }

@@ -40,10 +40,10 @@ public:
         if (soChoNgoi < 10){
             return 2160000;
         }
-        if (soChoNgoi >= 10 && soChoNgoi < 25){
+        if (soChoNgoi < 25){
             return 3240000;
         }
-        if (soChoNgoi >= 25 && soChoNgoi < 40){
+        if (soChoNgoi < 40){
             return 4680000;
         }
         if (soChoNgoi >= 40){
@@ -62,9 +62,9 @@ public:
         string bienSo, hangSanXuat, kieuDang; 
         int namSanXuat, soChoNgoi;
 
-        cout << "Nhap bien so xe: "; is >> bienSo;
+        cout << "Nhap bien so xe: "; is.ignore(); getline(is, bienSo);
         xeOto.setBienSo(bienSo);
-        cout << "Nhap hang san xuat: "; is >> hangSanXuat;
+        cout << "Nhap hang san xuat: "; is.ignore(); getline(is, hangSanXuat);
         xeOto.setHangSanXuat(hangSanXuat);
         cout << "Nhap nam san xuat: ";  
         while (true) {
@@ -73,7 +73,8 @@ public:
                 cout << "Loi, xin vui long nhap lai nam san xuat: ";
                 is.clear();
                 is.ignore(numeric_limits<streamsize>::max(), '\n');
-            } else {
+            } 
+            else {
                 xeOto.setNamSanXuat(namSanXuat);
                 break;
             }
@@ -85,7 +86,8 @@ public:
                 cout << "Loi, xin vui long nhap lai so cho ngoi: ";
                 is.clear();
                 is.ignore(numeric_limits<streamsize>::max(), '\n');
-            } else {
+            } 
+            else {
                 xeOto.setSoChoNgoi(soChoNgoi);
                 break;
             }

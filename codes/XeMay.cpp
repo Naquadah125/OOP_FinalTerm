@@ -53,9 +53,9 @@ public:
         string bienSo, hangSanXuat; 
         int namSanXuat, dungTich;
 
-        cout << "Nhap bien so xe: "; is >> bienSo;
+        cout << "Nhap bien so xe: "; is.ignore(); getline(is, bienSo);
         xeMay.setBienSo(bienSo);
-        cout << "Nhap hang san xuat: "; is >> hangSanXuat;
+        cout << "Nhap hang san xuat: "; is.ignore(); getline(is, hangSanXuat);
         xeMay.setHangSanXuat(hangSanXuat);
         cout << "Nhap nam san xuat: ";
         while (true) { //ng dùng nhập sai, sẽ nhập lại
@@ -64,7 +64,8 @@ public:
                 cout << "Loi, xin vui long nhap lai nam san xuat: ";
                 is.clear();
                 is.ignore(numeric_limits<streamsize>::max(), '\n');
-            } else {
+            } 
+            else {
                 xeMay.setNamSanXuat(namSanXuat);
                 break;
             }
@@ -76,7 +77,8 @@ public:
                 cout << "Loi, xin vui long nhap lai dung tich: ";
                 is.clear();
                 is.ignore(numeric_limits<streamsize>::max(), '\n');
-            } else {
+            } 
+            else {
                 xeMay.setDungTich(dungTich);
                 break;
             }
