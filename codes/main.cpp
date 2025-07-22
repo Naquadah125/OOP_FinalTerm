@@ -363,7 +363,7 @@ int main() {
                 break;
             }
             default: {
-                cout << "du lieu khong hop le" << endl;
+                cout << "du lieu khong hop le\n" << endl;
                 break;
             }
         }
