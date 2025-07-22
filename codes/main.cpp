@@ -21,6 +21,9 @@ void addVehicle(vector<T>& vt, const string& typeName) {
 
     vt.push_back(xe);
     cout << "Da them " << typeName << " thanh cong\n" << endl;
+
+    cout << "Nhan Enter de tiep tuc..." << endl;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
 template <typename T> //xóa xe
 void deleteVehicle(vector<T>& vt) {
@@ -47,6 +50,10 @@ void deleteVehicle(vector<T>& vt) {
         cout << "Da xoa thanh cong\n" << endl;
         isDelete = true;
     }
+
+    cout << "Nhan Enter de tiep tuc..." << endl;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cin.get();
 }
 template <typename T> //hiển thị tổng số xe
 void displayVehicleVector(const vector<T>& vt){
@@ -54,10 +61,15 @@ void displayVehicleVector(const vector<T>& vt){
         cout << "vector rong, khong the hien thi\n" << endl;
         return;
     }
+    cout << endl;
     for (size_t i = 0; i < vt.size(); i++){
         cout << "Du lieu tai vector " << i << ": " << endl;
         cout << vt[i] << endl;
     }
+
+    cout << "Nhan Enter de tiep tuc..." << endl;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cin.get();
 }
 template <typename T> //thay đổi thông số xe tại vị trí X trên vector
 void changeVectorInfo(vector<T>& vt, string typeName){
@@ -88,6 +100,9 @@ void changeVectorInfo(vector<T>& vt, string typeName){
         cout << "Du lieu duoc thay doi thanh cong\n" << endl;
         isChange = true;
     }
+
+    cout << "Nhan Enter de tiep tuc..." << endl;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
 void displayMainMenu() {
     cout << ">>=========== M E N U ===========<<" << endl;
@@ -136,7 +151,7 @@ void handleAddMenu(vector<XeOto>& vtXeOto, vector<XeMay>& vtXeMay, vector<XeTai>
         cin >> inputSubMenu;
 
         if (cin.fail()) {
-            cout << "Loi, xin vui long thu lai\n" << endl;
+            cout << "Loi, xin vui long thu lai" << endl;
             clearInput();
             continue;
         }
@@ -179,7 +194,7 @@ void handleDeleteMenu(vector<XeOto>& vtXeOto, vector<XeMay>& vtXeMay, vector<XeT
         cin >> inputSubMenu;
 
         if (cin.fail()) {
-            cout << "Loi, xin vui long thu lai\n" << endl;
+            cout << "Loi, xin vui long thu lai" << endl;
             clearInput();
             continue;
         }
@@ -222,7 +237,7 @@ void handleEditMenu(vector<XeOto>& vtXeOto, vector<XeMay>& vtXeMay, vector<XeTai
         cin >> inputSubMenu;
 
         if (cin.fail()) {
-            cout << "Loi, xin vui long thu lai\n" << endl;
+            cout << "Loi, xin vui long thu lai" << endl;
             clearInput();
             continue;
         }
@@ -265,7 +280,7 @@ void handleDisplayMenu(vector<XeOto>& vtXeOto, vector<XeMay>& vtXeMay, vector<Xe
         cin >> inputSubMenu;
 
         if (cin.fail()) {
-            cout << "Loi, xin vui long thu lai\n" << endl;
+            cout << "Loi, xin vui long thu lai" << endl;
             clearInput();
             continue;
         }
