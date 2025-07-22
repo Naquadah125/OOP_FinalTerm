@@ -1,5 +1,5 @@
 #include <iostream>
-#include <iomanip>
+#include <limits>
 #include <vector>
 #include "PhuongTien.cpp"
 #include "XeOto.cpp"
@@ -7,20 +7,22 @@
 #include "XeTai.cpp"
 using namespace std;
 
+// Để clear input khi người dùng nhập sai 
 void clearInput(){
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
-template <typename T>
+template <typename T> //thêm xe
 void addVehicle(vector<T>& vt, const string& typeName) {
     cout << "\nNhap thong tin " << typeName << ": " << endl;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Làm sạch buffer trước khi nhập
     T xe;
     cin >> xe;
 
     vt.push_back(xe);
     cout << "Da them " << typeName << " thanh cong\n" << endl;
 }
-template <typename T>
+template <typename T> //xóa xe
 void deleteVehicle(vector<T>& vt) {
     if (vt.size() == 0) {
         cout << "vector rong, khong the thuc hien xoa\n" << endl;
@@ -29,7 +31,7 @@ void deleteVehicle(vector<T>& vt) {
     bool isDelete = false;
     while (!isDelete) {
         int choice;
-        cout << "Nhap vi tri vector can xoa (1 -> " << vt.size() << ", hoac -1 de quay ve main menu): ";
+        cout << "Nhap vi tri vector can xoa (1 den " << vt.size() << ", hoac -1 de quay ve main menu): ";
         cin >> choice;
                                         // giúp cho kiểu dữ liệu của choice == vt.size
         if (cin.fail() || choice < 1 || static_cast<size_t>(choice) > vt.size()) {
@@ -46,7 +48,7 @@ void deleteVehicle(vector<T>& vt) {
         isDelete = true;
     }
 }
-template <typename T>
+template <typename T> //hiển thị tổng số xe
 void displayVehicleVector(const vector<T>& vt){
     if (vt.size() == 0) {
         cout << "vector rong, khong the hien thi\n" << endl;
@@ -57,19 +59,19 @@ void displayVehicleVector(const vector<T>& vt){
         cout << vt[i] << endl;
     }
 }
-template <typename T>
+template <typename T> //thay đổi thông số xe tại vị trí X trên vector
 void changeVectorInfo(vector<T>& vt, string typeName){
     if (vt.size() == 0){
-        cout << "vector rong, khong the chinh sua";
+        cout << "vector rong, khong the chinh sua\n" << endl;
         return;
     }
     bool isChange = false;
     while (!isChange){
-        cout << "Nhap vi tri can sua chua (tu 1 -> " << vt.size() << ", hoac -1 de quay ve main menu): ";
+        cout << "Nhap vi tri can sua chua (tu 1 den " << vt.size() << ", hoac -1 de quay ve main menu): ";
         int location;
         cin >> location;
 
-        if (cin.fail() || location < -1 || static_cast<size_t>(location) > vt.size()) { 
+        if (cin.fail() || (location < 1 && location != -1) || static_cast<size_t>(location) > vt.size()) { 
             cout << "Loi nhap lieu, vui long nhap lai hoac -1 de quay ve main menu\n" << endl;
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -83,7 +85,7 @@ void changeVectorInfo(vector<T>& vt, string typeName){
 
         cout << "Nhap cac du lieu de thay doi lop " << typeName << ":\n";
         cin >> vt[location - 1];
-        cout << "Du lieu duoc thay doi thanh cong" << "\n\n";
+        cout << "Du lieu duoc thay doi thanh cong\n" << endl;
         isChange = true;
     }
 }
@@ -124,147 +126,214 @@ void displayMenu4() {
     cout << "4. Quay lai" << endl;
     cout << "\nNhap lua chon: ";
 }
+// Hàm xử lý menu thêm (case 1)
+void handleAddMenu(vector<XeOto>& vtXeOto, vector<XeMay>& vtXeMay, vector<XeTai>& vtXeTai) {
+    bool validInput = false;
+    int inputSubMenu;
+    while (!validInput) {
+        cout << endl;
+        displayMenu1();
+        cin >> inputSubMenu;
+
+        if (cin.fail()) {
+            cout << "Loi, xin vui long thu lai\n" << endl;
+            clearInput();
+            continue;
+        }
+
+        switch (inputSubMenu) {
+            case 1: {
+                addVehicle(vtXeOto, "Xe Oto");
+                validInput = true;
+                break;
+            }
+            case 2: {
+                addVehicle(vtXeMay, "Xe May");
+                validInput = true;
+                break;
+            }
+            case 3: {
+                addVehicle(vtXeTai, "Xe Tai");
+                validInput = true;
+                break;
+            }
+            case 4: {
+                cout << "Quay ve main menu\n" << endl;
+                validInput = true;
+                break;
+            }
+            default: {
+                cout << "Lua chon khong hop le\n" << endl;
+                continue;
+            }
+        }
+    }
+}
+// Hàm xử lý menu xóa (case 2)
+void handleDeleteMenu(vector<XeOto>& vtXeOto, vector<XeMay>& vtXeMay, vector<XeTai>& vtXeTai) {
+    bool validInput = false;
+    int inputSubMenu;
+    while (!validInput) {
+        cout << endl;
+        displayMenu2();
+        cin >> inputSubMenu;
+
+        if (cin.fail()) {
+            cout << "Loi, xin vui long thu lai\n" << endl;
+            clearInput();
+            continue;
+        }
+
+        switch (inputSubMenu) {
+            case 1: {
+                deleteVehicle(vtXeOto);
+                validInput = true;
+                break;
+            }
+            case 2: {
+                deleteVehicle(vtXeMay);
+                validInput = true;
+                break;
+            }
+            case 3: {
+                deleteVehicle(vtXeTai);
+                validInput = true;
+                break;
+            }
+            case 4: {
+                cout << "Quay ve main menu\n" << endl;
+                validInput = true;
+                break;
+            }
+            default: {
+                cout << "Lua chon khong hop le\n" << endl;
+                continue;
+            }
+        }
+    }
+}
+// Hàm xử lý menu chỉnh sửa (case 3)
+void handleEditMenu(vector<XeOto>& vtXeOto, vector<XeMay>& vtXeMay, vector<XeTai>& vtXeTai) {
+    bool validInput = false;
+    int inputSubMenu;
+    while (!validInput) {
+        cout << endl;
+        displayMenu3();
+        cin >> inputSubMenu;
+
+        if (cin.fail()) {
+            cout << "Loi, xin vui long thu lai\n" << endl;
+            clearInput();
+            continue;
+        }
+
+        switch (inputSubMenu) {
+            case 1: {
+                changeVectorInfo(vtXeOto, "Xe Oto");
+                validInput = true;
+                break;
+            }
+            case 2: {
+                changeVectorInfo(vtXeMay, "Xe May");
+                validInput = true;
+                break;
+            }
+            case 3: {
+                changeVectorInfo(vtXeTai, "Xe Tai");
+                validInput = true;
+                break;
+            }
+            case 4: {
+                cout << "Quay ve main menu\n" << endl;
+                validInput = true;
+                break;
+            }
+            default: {
+                cout << "Lua chon khong hop le\n" << endl;
+                continue;
+            }
+        }
+    }
+}
+// Hàm xử lý menu hiển thị (case 4)
+void handleDisplayMenu(vector<XeOto>& vtXeOto, vector<XeMay>& vtXeMay, vector<XeTai>& vtXeTai) {
+    bool validInput = false;
+    int inputSubMenu;
+    while (!validInput) {
+        cout << endl;
+        displayMenu4();
+        cin >> inputSubMenu;
+
+        if (cin.fail()) {
+            cout << "Loi, xin vui long thu lai\n" << endl;
+            clearInput();
+            continue;
+        }
+
+        switch (inputSubMenu) {
+            case 1: {
+                displayVehicleVector(vtXeOto);
+                validInput = true;
+                break;
+            }
+            case 2: {
+                displayVehicleVector(vtXeMay);
+                validInput = true;
+                break;
+            }
+            case 3: {
+                displayVehicleVector(vtXeTai);
+                validInput = true;
+                break;
+            }
+            case 4: {
+                cout << "Quay ve main menu\n" << endl;
+                validInput = true;
+                break;
+            }
+            default: {
+                cout << "Lua chon khong hop le\n" << endl;
+                continue;
+            }
+        }
+    }
+}
 
 int main() {
     vector<XeOto> vtXeOto;
     vector<XeMay> vtXeMay;
     vector<XeTai> vtXeTai;
 
-    int inputMainMenu, inputSubMenu;
+    int inputMainMenu;
     bool loopSwitch = true;
-    while (loopSwitch){
+    while (loopSwitch) {
         displayMainMenu();
         cin >> inputMainMenu;
 
-        if (cin.fail()){
+        if (cin.fail()) {
             cout << "Loi, xin vui long thu lai\n\n";
             clearInput();
+            continue;
         }
 
-        switch (inputMainMenu){
+        switch (inputMainMenu) {
             case 1: {
-                cout << endl;
-                displayMenu1();
-                cin >> inputSubMenu;
-
-                switch (inputSubMenu){
-                    case 1: { // Them xe oto
-                        addVehicle(vtXeOto, "Xe Oto");
-                        break;
-                    }
-                    case 2: { // Them xe may
-                        addVehicle(vtXeMay, "Xe May");
-                        break;
-                    } 
-                    case 3: { // hem xe tai
-                        addVehicle(vtXeTai, "Xe Oto");
-                        break;
-                    }
-                    case 4:{
-                        cout << "Quay ve main menu\n" << endl;
-                        break;
-                    }
-                    default: {
-                        cout << "Lua chon khong hop le: " << endl;
-                        break;
-                    }
-                }
+                handleAddMenu(vtXeOto, vtXeMay, vtXeTai);
                 break;
             }
-
             case 2: {
-                cout << endl;
-                displayMenu2();
-                cin >> inputSubMenu;
-
-                switch (inputSubMenu){
-                    case 1: { // xoa Xe oto
-                        deleteVehicle(vtXeOto);
-                        break;
-                    }
-
-                    case 2: { // Xoa xe May
-                        deleteVehicle(vtXeMay);
-                        break;
-                    }
-
-                    case 3: { // xoa xe Tai
-                        deleteVehicle(vtXeTai);
-                        break;
-                    }
-                    case 4: {
-                        cout << "Quay ve main menu\n" << endl;
-                        break;
-                    }
-                    default: {
-                        cout << "Lua chon khong hop le\n" << endl;
-                        break;
-                    }
-                }
+                handleDeleteMenu(vtXeOto, vtXeMay, vtXeTai);
                 break;
             }
-
-            case 3:{
-                cout << endl;
-                displayMenu3();
-                cin >> inputSubMenu;
-
-                switch(inputSubMenu){
-                    case 1: {
-                        changeVectorInfo(vtXeOto, "Xe Oto");
-                        break;
-                    }
-                    case 2: {
-                        changeVectorInfo(vtXeMay, "Xe May");
-                        break;
-                    }
-                    case 3: {
-                        changeVectorInfo(vtXeTai, "Xe Tai");
-                        break;
-                    }
-                    case 4: {
-                        cout << "Quay ve main menu\n" << endl;
-                        break;
-                    }
-                    default:{   
-                        cout << "Lua chon khong hop le\n" << endl;
-                        break;
-                    }
-                }
+            case 3: {
+                handleEditMenu(vtXeOto, vtXeMay, vtXeTai);
                 break;
             }
-
-            case 4:{
-                cout << endl;
-                displayMenu4();
-                cin >> inputSubMenu;  cout << endl;
-
-                switch (inputSubMenu){
-                    case 1: { //Hien thi vector Xe Oto
-                        displayVehicleVector(vtXeOto);
-                        break;
-                    }
-                    case 2: { //Hien thi vector Xe May
-                        displayVehicleVector(vtXeMay);
-                        break;
-                    }
-                    case 3: { //Hien thi vector Xe Tai
-                        displayVehicleVector(vtXeTai);
-                        break;
-                    }
-                    case 4: { 
-                        cout << "Quay ve main menu\n" << endl;
-                        break;
-                    }
-                    default:{   
-                        cout << "Lua chon khong hop le\n" << endl;
-                        break;
-                    }
-                }
+            case 4: {
+                handleDisplayMenu(vtXeOto, vtXeMay, vtXeTai);
                 break;
             }
-
-            case 5:{
+            case 5: {
                 cout << "Ket thuc chuong trinh" << endl;
                 loopSwitch = false;
                 break;
