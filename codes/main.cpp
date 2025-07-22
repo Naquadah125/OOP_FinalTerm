@@ -29,6 +29,9 @@ template <typename T> //xóa xe
 void deleteVehicle(vector<T>& vt) {
     if (vt.size() == 0) {
         cout << "vector rong, khong the thuc hien xoa\n" << endl;
+        cout << "Nhan Enter de tiep tuc..." << endl;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin.get();
         return;
     }
     bool isDelete = false;
@@ -59,6 +62,9 @@ template <typename T> //hiển thị tổng số xe
 void displayVehicleVector(const vector<T>& vt){
     if (vt.size() == 0) {
         cout << "vector rong, khong the hien thi\n" << endl;
+        cout << "Nhan Enter de tiep tuc..." << endl;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin.get();
         return;
     }
     cout << endl;
@@ -75,6 +81,9 @@ template <typename T> //thay đổi thông số xe tại vị trí X trên vecto
 void changeVectorInfo(vector<T>& vt, string typeName){
     if (vt.size() == 0){
         cout << "vector rong, khong the chinh sua\n" << endl;
+        cout << "Nhan Enter de tiep tuc..." << endl;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin.get();
         return;
     }
     bool isChange = false;
@@ -178,7 +187,7 @@ void handleAddMenu(vector<XeOto>& vtXeOto, vector<XeMay>& vtXeMay, vector<XeTai>
                 break;
             }
             default: {
-                cout << "Lua chon khong hop le\n" << endl;
+                cout << "Lua chon khong hop le\n";
                 continue;
             }
         }
@@ -221,7 +230,7 @@ void handleDeleteMenu(vector<XeOto>& vtXeOto, vector<XeMay>& vtXeMay, vector<XeT
                 break;
             }
             default: {
-                cout << "Lua chon khong hop le\n" << endl;
+                cout << "Lua chon khong hop le\n";
                 continue;
             }
         }
@@ -264,7 +273,7 @@ void handleEditMenu(vector<XeOto>& vtXeOto, vector<XeMay>& vtXeMay, vector<XeTai
                 break;
             }
             default: {
-                cout << "Lua chon khong hop le\n" << endl;
+                cout << "Lua chon khong hop le\n";
                 continue;
             }
         }
@@ -307,7 +316,7 @@ void handleDisplayMenu(vector<XeOto>& vtXeOto, vector<XeMay>& vtXeMay, vector<Xe
                 break;
             }
             default: {
-                cout << "Lua chon khong hop le\n" << endl;
+                cout << "Lua chon khong hop le\n";
                 continue;
             }
         }
