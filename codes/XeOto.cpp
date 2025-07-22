@@ -25,13 +25,13 @@ public:
         this->kieuDang = kieuDang;
     }
 
-    void HienThiThongTin() override {
+    void HienThiThongTin() const override {
         PhuongTien::HienThiThongTin();
         cout << "So Cho Ngoi: " << soChoNgoi << " nguoi" << endl;
         cout << "Kieu dang: " << kieuDang << endl;
         cout << "Phi bao tri: " << formatNumber(TinhPhiBaoTri()) << " vnd/nam" << endl;
     }
-    double TinhPhiBaoTri() override{
+    double TinhPhiBaoTri() const override{
         // https://dailyxetaihyundai.vn/tin-tuc-su-kien/muc-phi-bao-tri-duong-bo-cho-xe-o-to-xe-ban-tai-xe-tai-moi-nhat-2018.html
         // lấy value 1 năm:
         if (soChoNgoi < 0){
@@ -51,7 +51,7 @@ public:
         }
         return -1;
     }
-    friend ostream& operator<<(ostream& os, XeOto& xeOto){
+    friend ostream& operator<<(ostream& os, const XeOto& xeOto){
         xeOto.PhuongTien::HienThiThongTin();
         os << "So Cho Ngoi: " << xeOto.soChoNgoi << " nguoi" << endl;
         os << "Kieu dang: " << xeOto.kieuDang << endl;
@@ -64,7 +64,7 @@ public:
 
         cout << "Nhap bien so xe: "; is.ignore(); getline(is, bienSo);
         xeOto.setBienSo(bienSo);
-        cout << "Nhap hang san xuat: "; is.ignore(); getline(is, hangSanXuat);
+        cout << "Nhap hang san xuat: "; getline(is, hangSanXuat);
         xeOto.setHangSanXuat(hangSanXuat);
         cout << "Nhap nam san xuat: ";  
         while (true) {

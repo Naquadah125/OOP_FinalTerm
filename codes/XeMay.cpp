@@ -18,12 +18,12 @@ public:
         this->dungTich = dungTich;
     }
 
-    void HienThiThongTin() override {
+    void HienThiThongTin() const override {
         PhuongTien::HienThiThongTin();
         cout << "Dung tich: " << dungTich << endl;
         cout << "Phi bao tri: " << formatNumber(TinhPhiBaoTri()) << " vnd/nam" << endl;
     }
-    double TinhPhiBaoTri() override {
+    double TinhPhiBaoTri() const  override {
         // https://vnexpress.net/xe-may-se-dong-phi-bao-tri-toi-da-180-000-dong-moi-nam-2227621.html
         // dùng value(1 năm) là dung tích xylanh với môtô
         if (dungTich < 0){
@@ -43,7 +43,7 @@ public:
         }
         return -1;
     }
-    friend ostream& operator<<(ostream& os, XeMay& xeMay) {
+    friend ostream& operator<<(ostream& os, const XeMay& xeMay) {
         xeMay.PhuongTien::HienThiThongTin();
         os << "Dung tich: " << xeMay.dungTich << "cc" << endl;
         os << "Phi bao tri: " << xeMay.formatNumber(xeMay.TinhPhiBaoTri()) << " vnd/nam" << endl;
@@ -55,7 +55,7 @@ public:
 
         cout << "Nhap bien so xe: "; is.ignore(); getline(is, bienSo);
         xeMay.setBienSo(bienSo);
-        cout << "Nhap hang san xuat: "; is.ignore(); getline(is, hangSanXuat);
+        cout << "Nhap hang san xuat: "; getline(is, hangSanXuat);
         xeMay.setHangSanXuat(hangSanXuat);
         cout << "Nhap nam san xuat: ";
         while (true) { //ng dùng nhập sai, sẽ nhập lại

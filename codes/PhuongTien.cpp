@@ -9,7 +9,7 @@ private:
     string hangSanXuat;
     int namSanXuat;
 protected:
-    string formatNumber(int num){
+    string formatNumber(int num) const {
         string s = to_string(num);
         for (int i = s.length() - 3; i > 0; i -= 3) { // Duyệt từ phải qua trái, mỗi 3 ký tự
             s.insert(i, ".");                         // Chèn dấu chấm tại vị trí i
@@ -41,10 +41,10 @@ public:
         this->namSanXuat = namSanXuat;
     }
 
-    virtual void HienThiThongTin(){
+    virtual void HienThiThongTin() const {
         cout << "Bien so: " << bienSo << endl;
         cout << "Hang san xuat: " << hangSanXuat << endl;
         cout << "Nam san xuat: " << namSanXuat << endl;
     }
-    virtual double TinhPhiBaoTri() = 0;
+    virtual double TinhPhiBaoTri() const = 0;
 };
